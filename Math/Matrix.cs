@@ -170,7 +170,7 @@ namespace Math
         public static double[][] ReducedEchelonForm(double[][] matrix)
         {
             var rows = matrix.GetLength(0);
-            var columns = matrix.GetLength(1);
+            var columns = matrix.First().GetLength(0);
 
             var result = CopyMatrix(matrix);
 
