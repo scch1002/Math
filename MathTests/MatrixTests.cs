@@ -158,5 +158,16 @@ namespace MathTests
             independent = Matrix.IsLinearlyIndependent(matrixDependent);
             Assert.AreEqual(false, independent);
         }
+
+        [TestMethod]
+        public void Matrix_Transpose()
+        {
+            var matrix_2X2 = new double[2][]
+            {
+                new double [] { 1, 2 },
+                new double [] { 3, 4 },
+
+            };
+        }
     }
 }

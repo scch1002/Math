@@ -73,8 +73,7 @@ namespace Math
             {
                 if (matrix[row][effectColumn] != 0)
                 {
-                    RowScale(matrix, row, matrix[startRow][effectColumn] / matrix[row][effectColumn]);
-                    RowReplacement(matrix, row, startRow, -1);
+                    RowReplacement(matrix, row, startRow, - matrix[row][effectColumn] / matrix[startRow][effectColumn]);
                 }
             }
         }
@@ -87,9 +86,7 @@ namespace Math
             {
                 if (matrix[row][effectColumn] != 0)
                 {
-                    RowScale(matrix, row, 1.0 / matrix[row][effectColumn]);
-                    RowScale(matrix, row, matrix[startRow][effectColumn]);
-                    RowReplacement(matrix, row, startRow, -1);
+                    RowReplacement(matrix, row, startRow, -matrix[row][effectColumn] / matrix[startRow][effectColumn]);
                 }
             }
         }
@@ -228,15 +225,23 @@ namespace Math
             }
             return matrix_Result;
         }
+
+        //A^T
+        public static double[][] MatrixTranspose(double[][] matrix)
+        {
+            return null;
+        }
         
         //Linear Independent
         public static bool IsLinearlyIndependent(double[][] matrix)
         {
+            // columns > rows
             if (matrix.First().GetLength(0) > matrix.GetLength(0))
             {
                 return false;
             }
 
+            // vector 0 present
             bool containsZeroVector = true;
             for (int column = 0; column < matrix.First().GetLength(0); column++)
             {
@@ -255,6 +260,7 @@ namespace Math
                 containsZeroVector = true;
             }
 
+            // ref() check
             var result = CopyMatrix(matrix);
 
             var echelonForm = EchelonForm(result);
